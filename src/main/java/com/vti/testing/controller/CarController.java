@@ -29,7 +29,7 @@ public class CarController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public Page<CarDTO> gerAllCars(Pageable pageable, CarFilterForm form){
+    public Page<CarDTO> getAllCars(Pageable pageable, CarFilterForm form){
         Page<Car> carPage = carService.getAllCars(pageable, form);
         List<Car> cars = carPage.getContent();
         List<CarDTO> carDTOS =
@@ -39,15 +39,21 @@ public class CarController {
     }
 
     @PostMapping ("/create")
-    public ResponseEntity<String> createCar(@RequestBody CreatingCarForm form) {
-        carService.createCar(form);
-        return new ResponseEntity<>("Create successfully", HttpStatus.CREATED);
+    public ResponseEntity<CarDTO> createCar(@RequestBody CreatingCarForm form) {
+//        carService.createCar(form);
+//        return new ResponseEntity<>("Create successfully", HttpStatus.CREATED);
+        Car car = carService.createCar(form);
+        CarDTO carDTO = modelMapper.map(car, CarDTO.class);
+        return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateCar(@PathVariable int id, @RequestBody UpdatingCarForm form) {
+    public ResponseEntity<CarDTO> updateCar(@PathVariable int id, @RequestBody UpdatingCarForm form) {
         form.setId(id);
-        carService.updateCar(form);
-        return new ResponseEntity<>("Update successfully", HttpStatus.CREATED);
+//        carService.updateCar(form);
+//        return new ResponseEntity<>("Update successfully", HttpStatus.CREATED);
+        Car car = carService.updateCar(form);
+        CarDTO carDTO = modelMapper.map(car, CarDTO.class);
+        return new ResponseEntity<>(carDTO, HttpStatus.CREATED);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable int id) {
