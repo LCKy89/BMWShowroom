@@ -36,6 +36,12 @@ public class CarService implements ICarService {
     }
 
     @Override
+    public Car getCarById(int id) {
+        return carRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Car not found with id: " + id));
+    }
+
+    @Override
     public Car createCar(@Valid CreatingCarForm form) {
         Car car = modelMapper.map(form, Car.class);
         CarCategory carCategory = carCategoryRepository.findByName(form.getCarCategoryName());

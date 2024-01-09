@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface ICarService {
    Page<Car> getAllCars(Pageable pageable, CarFilterForm form);
-
+    Car getCarById(int id);
    Car createCar(CreatingCarForm form);
    Car updateCar(UpdatingCarForm form);
    void deleteCar(int id);

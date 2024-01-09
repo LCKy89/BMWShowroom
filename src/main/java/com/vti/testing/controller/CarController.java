@@ -1,7 +1,9 @@
 package com.vti.testing.controller;
 
+import com.vti.testing.dto.CarCategoryDTO;
 import com.vti.testing.dto.CarDTO;
 import com.vti.testing.entity.Car;
+import com.vti.testing.entity.CarCategory;
 import com.vti.testing.form.car.CarFilterForm;
 import com.vti.testing.form.car.CreatingCarForm;
 import com.vti.testing.form.car.UpdatingCarForm;
@@ -59,5 +61,15 @@ public class CarController {
     public ResponseEntity<String> deleteCar(@PathVariable int id) {
         carService.deleteCar(id);
         return new ResponseEntity<>("Delete successfully", HttpStatus.CREATED);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getCarById(@PathVariable int id) {
+        try {
+            Car car = carService.getCarById(id);
+            CarDTO carDTO = modelMapper.map(car, CarDTO.class);
+            return new ResponseEntity<>(carDTO, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 }
