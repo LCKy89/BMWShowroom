@@ -5,8 +5,15 @@ import org.springframework.context.annotation.Bean;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
+    //    @Bean
+//    public ModelMapper initModelMapper() {
+//        return new ModelMapper();
+//    }
     @Bean
     public ModelMapper initModelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+                .setAmbiguityIgnored(true);
+        return modelMapper;
     }
 }
