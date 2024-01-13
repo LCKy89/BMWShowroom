@@ -23,6 +23,5 @@ public class NewsDto {
 //    @CreationTimestamp
 //    @UpdateTimestamp
     @JsonFormat(pattern="yyyy-MM-dd")
-
     private LocalDateTime dateNews;
 }
