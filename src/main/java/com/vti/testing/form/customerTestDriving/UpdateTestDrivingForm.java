@@ -1,6 +1,5 @@
 package com.vti.testing.form.customerTestDriving;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +15,6 @@ public class UpdateTestDrivingForm {
     private String fullName;
     private String carName;  // Thay vì carId, bạn có thể trực tiếp nhập tên xe
     private String phoneNumber;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateTestDriving;
 }

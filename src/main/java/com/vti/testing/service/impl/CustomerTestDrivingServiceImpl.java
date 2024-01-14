@@ -31,6 +31,7 @@ public class CustomerTestDrivingServiceImpl implements CustomerTestDrivingServic
     @Autowired
     private ModelMapper modelMapper;
 
+
     @Override
     public Page<Map<String, Object>> getAllCustomerTestDrivings(Pageable pageable, TestDrivingFilterForm filterForm) {
         Page<CustomerTestDriving> result;
@@ -48,11 +49,23 @@ public class CustomerTestDrivingServiceImpl implements CustomerTestDrivingServic
     }
 
 
-    @Override
-    public CustomerTestDriving getCustomerTestDrivingById(int id) {
-        Optional<CustomerTestDriving> optionalCustomerTestDriving = customerTestDrivingRepository.findById(id);
-        return optionalCustomerTestDriving.orElse(null);
+//    @Override
+//    public CustomerTestDriving getCustomerTestDrivingById(int id) {
+//        Optional<CustomerTestDriving> optionalCustomerTestDriving = customerTestDrivingRepository.findById(id);
+//        return optionalCustomerTestDriving.orElse(null);
+//    }
+@Override
+public Map<String, Object> getCustomerTestDrivingById(int id) {
+    Optional<CustomerTestDriving> optionalCustomerTestDriving = customerTestDrivingRepository.findById(id);
+
+    if (optionalCustomerTestDriving.isPresent()) {
+        CustomerTestDriving customerTestDriving = optionalCustomerTestDriving.get();
+        return mapToResponse(customerTestDriving);
+    } else {
+        return null;
     }
+}
+
 
     @Override
     public Map<String, Object> createCustomerTestDriving(CreateTestDrivingForm form) {
@@ -99,13 +112,28 @@ public class CustomerTestDrivingServiceImpl implements CustomerTestDrivingServic
         }
     }
 
+    //    private Map<String, Object> mapToResponse(CustomerTestDriving customerTestDriving) {
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("id", customerTestDriving.getId());
+//        response.put("fullName", customerTestDriving.getFullName());
+//        response.put("phoneNumber", customerTestDriving.getPhoneNumber());
+//        response.put("dateTestDriving", customerTestDriving.getDateTestDriving());
+//        response.put("carName", mapCarToResponse(customerTestDriving.getCar()));
+//        return response;
+//    }
+//
+//    private Map<String, Object> mapCarToResponse(Car car) {
+//        Map<String, Object> carResponse = new HashMap<>();
+//        carResponse.put("name", car.getName());
+//        return carResponse;
+//    }
     private Map<String, Object> mapToResponse(CustomerTestDriving customerTestDriving) {
         Map<String, Object> response = new HashMap<>();
         response.put("id", customerTestDriving.getId());
         response.put("fullName", customerTestDriving.getFullName());
         response.put("phoneNumber", customerTestDriving.getPhoneNumber());
         response.put("dateTestDriving", customerTestDriving.getDateTestDriving());
-        response.put("car", mapCarToResponse(customerTestDriving.getCar()));
+        response.put("carName", customerTestDriving.getCar().getName()); // Thêm carName vào response
         return response;
     }
 

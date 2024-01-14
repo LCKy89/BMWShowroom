@@ -31,8 +31,8 @@ public class Configuration {
         return builder -> {
 
             // formatter
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
-            DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("yyyy-dd-MM");
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter dateTimeFormatter =  DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             // deserializers
             builder.deserializers(new LocalDateDeserializer(dateFormatter));

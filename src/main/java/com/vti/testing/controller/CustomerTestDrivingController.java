@@ -1,7 +1,5 @@
 package com.vti.testing.controller;
 
-
-import com.vti.testing.entity.CustomerTestDriving;
 import com.vti.testing.form.customerTestDriving.CreateTestDrivingForm;
 import com.vti.testing.form.customerTestDriving.TestDrivingFilterForm;
 import com.vti.testing.form.customerTestDriving.UpdateTestDrivingForm;
@@ -49,8 +47,8 @@ public class CustomerTestDrivingController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerTestDriving> getCustomerTestDrivingById(@PathVariable int id) {
-        CustomerTestDriving customerTestDriving = customerTestDrivingService.getCustomerTestDrivingById(id);
+    public ResponseEntity<Map<String, Object>> getCustomerTestDrivingById(@PathVariable int id) {
+        Map<String, Object> customerTestDriving = customerTestDrivingService.getCustomerTestDrivingById(id);
         if (customerTestDriving != null) {
             return ResponseEntity.ok(customerTestDriving);
         } else {

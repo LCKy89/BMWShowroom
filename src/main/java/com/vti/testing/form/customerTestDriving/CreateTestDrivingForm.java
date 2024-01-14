@@ -1,6 +1,5 @@
 package com.vti.testing.form.customerTestDriving;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class CreateTestDrivingForm {
     private String fullName;
     private String carName;
     private String phoneNumber;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateTestDriving;
 
 }

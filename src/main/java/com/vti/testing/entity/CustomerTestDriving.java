@@ -32,6 +32,7 @@ public class CustomerTestDriving {
 
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false, referencedColumnName = "id")
+    @JsonIgnoreProperties({"image", "price", "information", "detailInformation", "yearOfManufacturer", "carCategory"})
     private Car car;
 
 

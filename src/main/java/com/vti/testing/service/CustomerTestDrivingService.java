@@ -1,7 +1,6 @@
 package com.vti.testing.service;
 
 
-import com.vti.testing.entity.CustomerTestDriving;
 import com.vti.testing.form.customerTestDriving.CreateTestDrivingForm;
 import com.vti.testing.form.customerTestDriving.TestDrivingFilterForm;
 import com.vti.testing.form.customerTestDriving.UpdateTestDrivingForm;
@@ -14,8 +13,7 @@ public interface CustomerTestDrivingService {
 
     Map<String, Object> createCustomerTestDriving(CreateTestDrivingForm form);
 
-    CustomerTestDriving getCustomerTestDrivingById(int id);
-
+    Map<String, Object> getCustomerTestDrivingById(int id);
     Page<Map<String, Object>> getAllCustomerTestDrivings(Pageable pageable, TestDrivingFilterForm filterForm);
 
     Map<String, Object> updateCustomerTestDriving(int id, UpdateTestDrivingForm form);
