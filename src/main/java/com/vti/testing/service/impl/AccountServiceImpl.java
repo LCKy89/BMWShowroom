@@ -39,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
     }
     @Override
     public Account createAccount(Account account) {
-        account.setRole(Role.USER);
+//        account.setRole(Role.USER);
         account.setCreateAt(LocalDateTime.now());
         return accountRepository.save(account);
     }
@@ -61,8 +61,8 @@ public class AccountServiceImpl implements AccountService {
             existingAccount.setUsername(updatedAccount.getUsername() != null ? updatedAccount.getUsername() : existingAccount.getUsername());
             existingAccount.setFirstName(updatedAccount.getFirstName() != null ? updatedAccount.getFirstName() : existingAccount.getFirstName());
             existingAccount.setLastName(updatedAccount.getLastName() != null ? updatedAccount.getLastName() : existingAccount.getLastName());
-//            existingAccount.setRole(updatedAccount.getRole() != null ? updatedAccount.getRole() : existingAccount.getRole());
-            existingAccount.setRole(updatedAccount.getRole() != null ? updatedAccount.getRole() : Role.USER);
+            existingAccount.setRole(updatedAccount.getRole() != null ? updatedAccount.getRole() : existingAccount.getRole());
+//            existingAccount.setRole(updatedAccount.getRole() != null ? updatedAccount.getRole() : Role.USER);
 
             return accountRepository.save(existingAccount);
         });
